@@ -1,10 +1,14 @@
 import { Link, router } from 'expo-router';
+import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Design } from '@/constants/design';
 
 export default function SettingsScreen() {
   const insets = useSafeAreaInsets();
+  const [notificationsEnabled, setNotificationsEnabled] = useState(true);
+  const [compactViewEnabled, setCompactViewEnabled] = useState(false);
+
   return (
     <View style={styles.container}>
       <View style={[styles.header, { paddingTop: insets.top + 12 }]}>
@@ -16,18 +20,22 @@ export default function SettingsScreen() {
       </View>
 
       <ScrollView style={styles.scroll} contentContainerStyle={styles.content}>
+        <Text style={styles.subtitle}>Personalize your leftovers tracking experience.</Text>
+
         <View style={styles.card}>
-          <Text style={styles.settingText}>Enable Expiration Notifications</Text>
+          <Text style={styles.settingText}>Enable Expiration Alerts</Text>
           <Switch
-            value={true}
+            value={notificationsEnabled}
+            onValueChange={setNotificationsEnabled}
             trackColor={{ false: Design.borderLight, true: Design.accent }}
             thumbColor={Design.textOnDark}
           />
         </View>
         <View style={styles.card}>
-          <Text style={styles.settingText}>Dark Mode Appearance</Text>
+          <Text style={styles.settingText}>Compact Card Layout</Text>
           <Switch
-            value={false}
+            value={compactViewEnabled}
+            onValueChange={setCompactViewEnabled}
             trackColor={{ false: Design.borderLight, true: Design.accent }}
             thumbColor={Design.textOnDark}
           />
@@ -62,6 +70,12 @@ const styles = StyleSheet.create({
   },
   scroll: { flex: 1 },
   content: { padding: 20, paddingBottom: 32 },
+  subtitle: {
+    fontSize: 14,
+    color: Design.textSecondary,
+    marginBottom: 12,
+    lineHeight: 20,
+  },
   card: {
     flexDirection: 'row',
     justifyContent: 'space-between',

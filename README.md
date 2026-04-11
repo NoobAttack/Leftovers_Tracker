@@ -1,50 +1,60 @@
-# Welcome to your Expo app 👋
+# Leftovers Tracker - Semester Project 3
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is my Semester Project 3 app built with Expo/React Native. It helps track leftovers so you can see what needs to be used soon.
 
-## Get started
+## Features
 
-1. Install dependencies
+- Multi-screen app using Expo Router
+- Add leftovers with expiration dates
+- AsyncStorage saves items between app restarts
+- OpenFoodFacts API adds extra product info when available
+- API failures are handled with fallback messages
+- Styled Home, Add Item, and Settings screens
 
-   ```bash
-   npm install
-   ```
+## Tech Stack
 
-2. Start the app
+- Expo + React Native + TypeScript
+- Expo Router
+- AsyncStorage (`@react-native-async-storage/async-storage`)
+- OpenFoodFacts public API
 
-   ```bash
-   npx expo start
-   ```
+## Run Locally
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+1. Install dependencies:
 
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2. Start the app:
 
-## Learn more
+```bash
+npx expo start
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+3. Optional lint check:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npm run lint
+```
 
-## Join the community
+## API Integration Details
 
-Join our community of developers creating universal apps.
+- Service file: `services/openFoodFacts.ts`
+- Endpoint: OpenFoodFacts search API
+- Called when saving an item in `app/(tabs)/add-item.tsx`
+- API data shows on Home cards in `app/(tabs)/index.tsx`
+- If the API fails, the app still saves the item
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Required Project Preview
+
+For submission, include at least one screenshot or short video showing:
+
+- A styled screen
+- API-backed item details on at least one saved card
+- App functionality/navigation (if possible)
+
+Quick way to capture preview:
+1. Add an item (for example: "Milk", with a valid date).
+2. Return to Home and verify the item card appears with any API details.
+3. Capture the screen in Expo Go, emulator, or web preview.
