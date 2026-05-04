@@ -1,4 +1,4 @@
-import { Link } from 'expo-router';
+import { router } from 'expo-router';
 import { useFocusEffect } from '@react-navigation/native';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import { useCallback, useMemo, useRef, useState } from 'react';
@@ -292,11 +292,12 @@ export default function HomeScreen() {
             </Text>
           </View>
 
-          <Link href="/add-item" asChild>
-            <Pressable style={[styles.primaryButton, styles.primaryCta]}>
-              <Text style={styles.primaryButtonText}>+ Add Leftover</Text>
-            </Pressable>
-          </Link>
+          <Pressable
+            style={[styles.primaryButton, styles.primaryCta]}
+            onPress={() => router.push('/add-item')}
+          >
+            <Text style={styles.primaryButtonText}>+ Add Leftover</Text>
+          </Pressable>
 
           <Text style={styles.sectionTitle}>Your Leftovers</Text>
 
@@ -407,11 +408,9 @@ export default function HomeScreen() {
               })
             : null}
 
-          <Link href="/settings" asChild>
-            <Pressable style={styles.settingsButton}>
-              <Text style={styles.settingsButtonText}>Settings</Text>
-            </Pressable>
-          </Link>
+          <Pressable style={styles.settingsButton} onPress={() => router.push('/settings')}>
+            <Text style={styles.settingsButtonText}>Settings</Text>
+          </Pressable>
         </>
       )}
     </ScrollView>

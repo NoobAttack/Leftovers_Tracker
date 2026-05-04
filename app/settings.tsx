@@ -1,4 +1,4 @@
-import { Link, router } from 'expo-router';
+import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -64,11 +64,9 @@ export default function SettingsScreen() {
           />
         </View>
 
-        <Link href="/" asChild>
-          <Pressable style={styles.backLink}>
-            <Text style={styles.backLinkText}>← Back to Fridge</Text>
-          </Pressable>
-        </Link>
+        <Pressable style={styles.backLink} onPress={() => router.push('/')}>
+          <Text style={styles.backLinkText}>← Back to Fridge</Text>
+        </Pressable>
       </ScrollView>
     </View>
   );
