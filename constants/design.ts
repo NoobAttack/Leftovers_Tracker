@@ -7,6 +7,7 @@ export const Design = {
 	backgroundMain: '#F8F8F8',
 	backgroundCard: '#FFFFFF',
 	backgroundHeaderFooter: '#1A1A1A',
+	backgroundMuted: '#F2F4F7',
 
 	// Text
 	textPrimary: '#2F3642',
@@ -34,6 +35,16 @@ export const Design = {
 	},
 	radiusCard: 10,
 	radiusButton: 8,
+	screenPaddingHorizontal: 20,
+	screenPaddingBottom: 32,
+	spaceXs: 4,
+	spaceSm: 8,
+	spaceMd: 12,
+	spaceLg: 16,
+	spaceXl: 20,
+	buttonHeight: 48,
+	buttonHeightCompact: 36,
+	thumbnailSize: 78,
 	headerHeight: 56,
 	tabBarHeight: 64,
 } as const;

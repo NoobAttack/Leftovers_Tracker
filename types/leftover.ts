@@ -12,4 +12,5 @@ export interface LeftoverItem {
   expiryDate: string;
   createdAt: string;
   apiDetails?: LeftoverApiDetails;
+  photoUri?: string;
 }

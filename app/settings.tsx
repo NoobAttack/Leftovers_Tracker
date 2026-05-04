@@ -1,13 +1,36 @@
 import { Link, router } from 'expo-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Switch, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Design } from '@/constants/design';
+import { getCompactCardLayoutEnabled, setCompactCardLayoutEnabled } from '@/services/preferencesStorage';
 
 export default function SettingsScreen() {
   const insets = useSafeAreaInsets();
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
   const [compactViewEnabled, setCompactViewEnabled] = useState(false);
+
+  useEffect(() => {
+    async function loadPreferences() {
+      try {
+        const compactEnabled = await getCompactCardLayoutEnabled();
+        setCompactViewEnabled(compactEnabled);
+      } catch {
+        // Keep default false if read fails.
+      }
+    }
+
+    void loadPreferences();
+  }, []);
+
+  async function handleCompactViewChange(nextValue: boolean) {
+    setCompactViewEnabled(nextValue);
+    try {
+      await setCompactCardLayoutEnabled(nextValue);
+    } catch {
+      // Keep UI responsive even if storage write fails.
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -35,7 +58,7 @@ export default function SettingsScreen() {
           <Text style={styles.settingText}>Compact Card Layout</Text>
           <Switch
             value={compactViewEnabled}
-            onValueChange={setCompactViewEnabled}
+            onValueChange={handleCompactViewChange}
             trackColor={{ false: Design.borderLight, true: Design.accent }}
             thumbColor={Design.textOnDark}
           />

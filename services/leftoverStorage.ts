@@ -24,7 +24,8 @@ function isLeftoverItem(item: unknown): item is LeftoverItem {
     typeof maybeItem.id === 'string' &&
     typeof maybeItem.name === 'string' &&
     typeof maybeItem.expiryDate === 'string' &&
-    typeof maybeItem.createdAt === 'string'
+    typeof maybeItem.createdAt === 'string' &&
+    (typeof maybeItem.photoUri === 'undefined' || typeof maybeItem.photoUri === 'string')
   );
 }
 
